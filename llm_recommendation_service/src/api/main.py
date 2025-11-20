@@ -162,7 +162,13 @@ def health_check():
     Returns:
         dict: Simple health message for monitoring and readiness checks.
     """
-    return {"message": "Healthy"}
+    return {"message": "Healthy", "version": "0.1.0"}
+
+# PUBLIC_INTERFACE
+@app.get("/health", tags=["Health"], summary="Health Check (alias)")
+def health_alias():
+    """Alias for root health check."""
+    return health_check()
 
 # PUBLIC_INTERFACE
 @app.post(
